@@ -118,12 +118,14 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
     if (decoration != null) {
       decoration!.layout(
           constraints.asBoxConstraints(
-              maxExtent: childLayoutGeometry!.maxPaintExtent + margin.horizontal,
+              maxExtent:
+                  childLayoutGeometry!.maxPaintExtent + margin.horizontal,
               crossAxisExtent: constraints.crossAxisExtent + margin.vertical),
           parentUsesSize: true);
     }
     // compute decoration offset
-    final SliverPhysicalParentData? headerParentData = decoration!.parentData as SliverPhysicalParentData?;
+    final SliverPhysicalParentData? headerParentData =
+        decoration!.parentData as SliverPhysicalParentData?;
     double headerPosition = -constraints.scrollOffset;
     switch (axisDirection) {
       case AxisDirection.up:
@@ -154,7 +156,8 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
 
   @override
   void applyPaintTransform(RenderObject child, Matrix4 transform) {
-    final SliverPhysicalParentData childParentData = child.parentData as SliverPhysicalParentData;
+    final SliverPhysicalParentData childParentData =
+        child.parentData as SliverPhysicalParentData;
     childParentData.applyPaintTransform(transform);
   }
 
@@ -163,12 +166,14 @@ class _RenderSliverGroup extends RenderSliver with RenderSliverHelpers {
     if (geometry!.visible) {
       // paint decoration
       if (decoration != null) {
-        final SliverPhysicalParentData childParentData = decoration!.parentData as SliverPhysicalParentData;
+        final SliverPhysicalParentData childParentData =
+            decoration!.parentData as SliverPhysicalParentData;
         context.paintChild(decoration!, offset + childParentData.paintOffset);
       }
       // paint child
       if (child != null && child!.geometry!.visible) {
-        final SliverPhysicalParentData? childParentData = child!.parentData as SliverPhysicalParentData?;
+        final SliverPhysicalParentData? childParentData =
+            child!.parentData as SliverPhysicalParentData?;
         final PaintingContextCallback painter =
             (PaintingContext context, Offset offset) {
           context.paintChild(child!, offset);
