@@ -2,13 +2,7 @@ part of flutter_group_sliver;
 
 @immutable
 class _SliverGroup extends RenderObjectWidget {
-  _SliverGroup(
-      {Key? key,
-      this.margin,
-      this.borderRadius,
-      this.decorationWidget,
-      this.sliver})
-      : super(key: key);
+  _SliverGroup({Key? key, this.margin, this.borderRadius, this.decorationWidget, this.sliver}) : super(key: key);
 
   final EdgeInsets? margin;
   final BorderRadius? borderRadius;
@@ -17,16 +11,14 @@ class _SliverGroup extends RenderObjectWidget {
 
   @override
   _RenderSliverGroup createRenderObject(BuildContext context) {
-    return _RenderSliverGroup(
-        margin: this.margin!, borderRadius: this.borderRadius);
+    return _RenderSliverGroup(margin: this.margin!, borderRadius: this.borderRadius);
   }
 
   @override
   _SliverGroupElement createElement() => _SliverGroupElement(this);
 
   @override
-  void updateRenderObject(
-      BuildContext context, _RenderSliverGroup renderObject) {
+  void updateRenderObject(BuildContext context, _RenderSliverGroup renderObject) {
     renderObject
       ..margin = margin!
       ..borderRadius = borderRadius;
@@ -50,6 +42,7 @@ class _SliverGroupElement extends RenderObjectElement {
 
   @override
   void forgetChild(Element child) {
+    super.forgetChild(child);
     if (child == _decoration) _decoration = null;
     if (child == _sliver) _sliver = null;
   }
@@ -70,7 +63,7 @@ class _SliverGroupElement extends RenderObjectElement {
   }
 
   @override
-  void insertChildRenderObject(RenderObject child, int? slot) {
+  void insertRenderObjectChild(RenderObject child, int? slot) {
     final _RenderSliverGroup renderObject = this.renderObject as _RenderSliverGroup;
     if (slot == 0) renderObject.decoration = child as RenderBox?;
     if (slot == 1) renderObject.child = child as RenderSliver?;
@@ -78,12 +71,12 @@ class _SliverGroupElement extends RenderObjectElement {
   }
 
   @override
-  void moveChildRenderObject(RenderObject child, slot) {
+  void moveRenderObjectChild(RenderObject child, Object? oldSlot, Object? newSlot) {
     assert(false);
   }
 
   @override
-  void removeChildRenderObject(RenderObject child) {
+  void removeRenderObjectChild(RenderObject child, Object? slot) {
     final _RenderSliverGroup renderObject = this.renderObject as _RenderSliverGroup;
     if (renderObject.decoration == child) renderObject.decoration = null;
     if (renderObject.child == child) renderObject.child = null;
